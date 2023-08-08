@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  tstestexpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/tsTestExpress
+    tty: true
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    container_name: tstestexpress
