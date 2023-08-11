@@ -64,7 +64,8 @@ docker exec -it tstestexpress npm run start
 
 ## tips
 
-| No                                                         | title                        |
-| ---------------------------------------------------------- | ---------------------------- |
-| [#1](https://github.com/cossack910/tsTestExpress/issues/1) | ts-node は実行時に使用しない |
-| [#2](https://github.com/cossack910/tsTestExpress/issues/2) | body-parser                  |
+| No                                                         | title                               |
+| ---------------------------------------------------------- | ----------------------------------- |
+| [#1](https://github.com/cossack910/tsTestExpress/issues/1) | ts-node は実行時に使用しない        |
+| [#2](https://github.com/cossack910/tsTestExpress/issues/2) | body-parser                         |
+| [#3](https://github.com/cossack910/tsTestExpress/issues/3) | モジュ―ルのインポート・エクスポート |
