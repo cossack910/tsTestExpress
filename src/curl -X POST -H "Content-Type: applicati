@@ -1,2 +1,8 @@
-posttest
+post
 curl -X POST -H "Content-Type: application/json" -d '{"text":"aaaaaa"}' localhost:3000/todos
+
+get
+curl "localhost:3000/todos"
+
+put
+curl -X PATCH -H "Content-Type: application/json" -d '{"text":"bbbbbb"}' localhost:3000/todos/0.527872397281973
