@@ -40,4 +40,18 @@ export class Todo {
         return {id: result.insertId, text: text};
       })
   }
+
+  static delete = async (id: string) => {
+    return connection()
+      .then(async (connection) => {
+        const getIndex = await connection.query('SELECT id FROM tasks WHERE id = ?', [id]);
+        if (getIndex === undefined) {
+          console.log('削除対象がありません');
+          return undefined;
+        }
+        const [result]: any = await connection.query('DELETE FROM tasks WHERE id = ?', [id]);
+        connection.end();
+        return {id: result.insertId} //0が返却
+      })
+  }
 }

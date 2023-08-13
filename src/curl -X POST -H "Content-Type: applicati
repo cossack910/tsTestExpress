@@ -1,11 +1,11 @@
 post
-curl -X POST -H "Content-Type: application/json" -d '{"text":"aaaaaa"}' localhost:3000/todos
+curl -X POST -H "Content-Type: application/json" -d '{"text":"insert"}' localhost:3000/todos
 
 get
 curl "localhost:3000/todos"
 
 put
-curl -X PATCH -H "Content-Type: application/json" -d '{"text":"bbbbbb"}' localhost:3000/todos/41
+curl -X PATCH -H "Content-Type: application/json" -d '{"text":"update"}' localhost:3000/todos/30
 
 delete
-curl -X DELETE -H "Content-Type: application/json" -d '{"text":"bbbbbb"}' localhost:3000/todos/id
+curl -X DELETE -H "Content-Type: application/json" localhost:3000/todos/26

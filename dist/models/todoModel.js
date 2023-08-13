@@ -56,3 +56,16 @@ Todo.update = (id, text) => __awaiter(void 0, void 0, void 0, function* () {
         return { id: result.insertId, text: text };
     }));
 });
+Todo.delete = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, db_1.default)()
+        .then((connection) => __awaiter(void 0, void 0, void 0, function* () {
+        const getIndex = yield connection.query('SELECT id FROM tasks WHERE id = ?', [id]);
+        if (getIndex === undefined) {
+            console.log('削除対象がありません');
+            return undefined;
+        }
+        const [result] = yield connection.query('DELETE FROM tasks WHERE id = ?', [id]);
+        connection.end();
+        return { id: result.insertId }; //0が返却
+    }));
+});

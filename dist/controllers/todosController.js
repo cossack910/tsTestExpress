@@ -48,16 +48,34 @@ exports.getTodos = getTodos;
 const updateTodo = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const text = req.body.text;
-    const updateTodo = yield todoModel_1.Todo.update(id, text);
-    if (updateTodo !== undefined) {
-        res.json({ message: "TODOを変更しました。", updatedTodo: updateTodo });
+    try {
+        const updateTodo = yield todoModel_1.Todo.update(id, text);
+        if (updateTodo !== undefined) {
+            res.json({ message: "TODOを変更しました。", updatedTodo: updateTodo });
+        }
+        else {
+            res.json({ message: "更新に失敗しました。" });
+        }
     }
-    else {
+    catch (error) {
         res.json({ message: "更新に失敗しました。" });
     }
+    ;
 });
 exports.updateTodo = updateTodo;
-const deleteTodo = (req, res, next) => {
-    res.json({ message: "TODOを削除しました。" });
-};
+const deleteTodo = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const deleteTodo = yield todoModel_1.Todo.delete(id);
+        if (deleteTodo !== undefined) {
+            res.json({ message: "TODOを削除しました。", id: id });
+        }
+        else {
+            res.json({ message: "TODOを削除に失敗しました。" });
+        }
+    }
+    catch (error) {
+        res.json({ message: "TODOを削除に失敗しました。" });
+    }
+});
 exports.deleteTodo = deleteTodo;
