@@ -13,3 +13,9 @@ services:
     ports:
       - 3000:3000
     container_name: tstestexpress
+    networks:
+      - test_db
+
+networks:
+  test_db:
+    external: true

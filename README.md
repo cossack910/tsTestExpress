@@ -50,6 +50,17 @@ docker exec -it tstestexpress npm install --save express body-parser
 docker exec -it tstestexpress npm install --save nodemon
 ```
 
+### mysql
+ver8.0の場合、mysql2をインストール
+```
+docker exec -it tstestexpress npm install express mysql2
+```
+
+types
+```
+docker exec -it tstestexpress npm install --save @types/mysql
+```
+
 ## ts ファイルコンパイル
 
 ```
@@ -69,3 +80,4 @@ docker exec -it tstestexpress npm run start
 | [#1](https://github.com/cossack910/tsTestExpress/issues/1) | ts-node は実行時に使用しない        |
 | [#2](https://github.com/cossack910/tsTestExpress/issues/2) | body-parser                         |
 | [#3](https://github.com/cossack910/tsTestExpress/issues/3) | モジュ―ルのインポート・エクスポート |
+| [#4](https://github.com/cossack910/tsTestExpress/issues/4) | mysql8.0に接続できない |
