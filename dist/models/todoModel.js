@@ -31,3 +31,28 @@ Todo.create = (text) => {
         return undefined;
     });
 };
+Todo.get = () => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, db_1.default)()
+        .then((connection) => __awaiter(void 0, void 0, void 0, function* () {
+        const results = yield connection.query('SELECT * FROM tasks');
+        connection.end();
+        return results[0];
+    }))
+        .catch(error => {
+        console.error('Error:', error.message);
+        return undefined;
+    });
+});
+Todo.update = (id, text) => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, db_1.default)()
+        .then((connection) => __awaiter(void 0, void 0, void 0, function* () {
+        const getIndex = yield connection.query('SELECT id FROM tasks WHERE id = ?', [id]);
+        if (getIndex === undefined) {
+            console.log('更新対象がありません');
+            return undefined;
+        }
+        const [result] = yield connection.query('UPDATE tasks SET text = ? WHERE id = ?', [text, id]);
+        connection.end();
+        return { id: result.insertId, text: text };
+    }));
+});

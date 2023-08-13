@@ -19,17 +19,32 @@ export const createTodo: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getTodos: RequestHandler = (req, res, next) => {
-  // const get = Todo.get();
-  // res.json({ todos: get });
+export const getTodos: RequestHandler = async (req, res, next) => {
+  const lists =  await Todo.get();
+  try {
+    if (lists !== undefined) {
+      res.status(200).json({ todos: lists });
+    } else {
+      res.status(500).json({message: "一覧取得失敗"});
+    }
+  } catch (error) {
+    res.status(500).json({message: "一覧取得失敗"});
+  };
 };
 
-export const updateTodo: RequestHandler<{ id: string; text: string }> = (
+export const updateTodo: RequestHandler<{ id: string; text: string }> = async (
   req,
   res,
   next
 ) => {
-  res.json({ message: "TODOを変更しました。", updatedTodo: ''});
+  const id = req.params.id;
+  const text = (req.body as {text: string}).text;
+  const updateTodo = await Todo.update(id, text);
+  if (updateTodo !== undefined) {
+    res.json({ message: "TODOを変更しました。", updatedTodo: updateTodo});
+  } else {
+    res.json({ message: "更新に失敗しました。"});
+  }
 };
 
 export const deleteTodo: RequestHandler<{ id: string }> = (req, res, next) => {
